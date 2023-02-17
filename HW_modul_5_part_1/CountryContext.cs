@@ -8,9 +8,9 @@ using System.Configuration;
 namespace AdoNetWinformsApp
 {
     public class CountryContext : DbContext
-    {         //  ||
-        //таблицы \/
-        
+    {   //        ||
+        //таблицы ||
+        //        \/
         public DbSet<Country> Countries { get; set; }
         public DbSet<City> Cities { get; set; }
 

@@ -14,12 +14,27 @@ namespace AdoNetWinformsApp
     {
         private CountryContext _context;
 
-        public CountryService(CountryContext context)
+        public CountryService()
         {
-            _context = context;
+            _context = new CountryContext();
         }
 
+        public CountryService(CountryContext context)
+        {
+            _context = new CountryContext();
+        }
 
+        public async Task<List<Country>> GetCountries()
+        {
+            var countries = await _context.Countries.ToListAsync();
+            return countries;
+        }
+
+        public async Task<List<Country>> GetCities()
+        {
+            var countries = await _context.Countries.ToListAsync();
+            return countries;
+        }
 
     }
 }
