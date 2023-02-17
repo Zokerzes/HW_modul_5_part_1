@@ -19,8 +19,8 @@ namespace HW_modul_5_part_1.EntityMappings
                .Property(x => x.Name)
                .HasMaxLength(DataBaseDefault.StringValueMaxLenght);
             builder.HasOne(x => x.Country)
-               .WithMany(x=>x.Cities)
-               .HasForeignKey(x => x.CountryId);
+               .WithMany(c=>c.Cities)
+               .HasForeignKey(g => g.CountryId);
         }
     }
 }

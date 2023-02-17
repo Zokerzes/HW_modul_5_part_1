@@ -16,8 +16,6 @@ namespace AdoNetWinformsApp.EntityMappings
             builder
                 .Property(x => x.Name)
                 .HasMaxLength(DataBaseDefault.StringValueMaxLenght);
-            
-
         }
     }
 }

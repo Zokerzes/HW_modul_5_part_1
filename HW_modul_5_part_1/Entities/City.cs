@@ -16,8 +16,6 @@ namespace HW_modul_5_part_1.Entities
         public int Population { get; set; }
         public bool IsCapital { get; set; } = false;
         public int CountryId { get; set; }
-        public virtual Country Country { get; set; }
-
-        
+        public virtual Country Country { get; set; } 
     }
 }

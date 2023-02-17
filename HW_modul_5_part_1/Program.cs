@@ -1,3 +1,6 @@
+using AdoNetWinformsApp;
+using Microsoft.EntityFrameworkCore;
+
 namespace HW_modul_5_part_1
 {
     internal static class Program
@@ -8,8 +11,9 @@ namespace HW_modul_5_part_1
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
+            var context = new CountryContext();
+            context.Database.Migrate();
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
         }
