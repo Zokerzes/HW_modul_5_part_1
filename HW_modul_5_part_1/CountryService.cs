@@ -14,7 +14,6 @@ namespace AdoNetWinformsApp
     {
         private CountryContext _context;
 
-
         public CountryService()
         {
             _context = new CountryContext();

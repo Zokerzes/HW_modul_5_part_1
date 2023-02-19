@@ -12,26 +12,35 @@ namespace HW_modul_5_part_1
         {
             InitializeComponent();
             _countryService = new CountryService();
-            LoadTabMethods = new()
+            LoadTabMethods = new ()
             {
                 {0,() =>LoadCountries() },
                 {1,() =>LoadCities() },
             };
 
         }
-
-        private async void LoadCities()
-        {
-            TableCreatorService.ShowTable(
-                 countryDataGrid,
-                 TableCreatorService.CreateCountryTable(await _countryService.GetCountries()));
-        }
-
         private async void LoadCountries()
         {
             TableCreatorService.ShowTable(
                 countryDataGrid,
                 TableCreatorService.CreateCountryTable(await _countryService.GetCountries()));
+        }
+
+        private async void LoadCities()
+        {
+        //    TableCreatorService.ShowTable(
+        //         countryDataGrid,
+        //         TableCreatorService.CreateCountryTable(await _countryService.GetCountries()));
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)  // ќб€ательно при запуске  дл€ старта загрузки данных из базы
+        {
+            LoadTabMethods[0]();
+        }
+
+        private void btnAddCountry_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

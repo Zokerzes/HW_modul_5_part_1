@@ -30,6 +30,9 @@
         {
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.CountryTabs = new System.Windows.Forms.TabPage();
+            this.btnUpdCountry = new System.Windows.Forms.Button();
+            this.btnDeleteCountry = new System.Windows.Forms.Button();
+            this.btnAddCountry = new System.Windows.Forms.Button();
             this.countryDataGrid = new System.Windows.Forms.DataGridView();
             this.CityTabs = new System.Windows.Forms.TabPage();
             this.mainTabControl.SuspendLayout();
@@ -49,6 +52,9 @@
             // 
             // CountryTabs
             // 
+            this.CountryTabs.Controls.Add(this.btnUpdCountry);
+            this.CountryTabs.Controls.Add(this.btnDeleteCountry);
+            this.CountryTabs.Controls.Add(this.btnAddCountry);
             this.CountryTabs.Controls.Add(this.countryDataGrid);
             this.CountryTabs.Location = new System.Drawing.Point(4, 24);
             this.CountryTabs.Name = "CountryTabs";
@@ -58,15 +64,48 @@
             this.CountryTabs.Text = "Страны";
             this.CountryTabs.UseVisualStyleBackColor = true;
             // 
+            // btnUpdCountry
+            // 
+            this.btnUpdCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdCountry.Location = new System.Drawing.Point(672, 72);
+            this.btnUpdCountry.Name = "btnUpdCountry";
+            this.btnUpdCountry.Size = new System.Drawing.Size(90, 48);
+            this.btnUpdCountry.TabIndex = 9;
+            this.btnUpdCountry.Text = "Изменить  страну";
+            this.btnUpdCountry.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteCountry
+            // 
+            this.btnDeleteCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteCountry.Location = new System.Drawing.Point(672, 126);
+            this.btnDeleteCountry.Name = "btnDeleteCountry";
+            this.btnDeleteCountry.Size = new System.Drawing.Size(90, 48);
+            this.btnDeleteCountry.TabIndex = 8;
+            this.btnDeleteCountry.TabStop = false;
+            this.btnDeleteCountry.Text = "Удалить страну";
+            this.btnDeleteCountry.UseVisualStyleBackColor = true;
+            // 
+            // btnAddCountry
+            // 
+            this.btnAddCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddCountry.Location = new System.Drawing.Point(672, 18);
+            this.btnAddCountry.Name = "btnAddCountry";
+            this.btnAddCountry.Size = new System.Drawing.Size(90, 48);
+            this.btnAddCountry.TabIndex = 7;
+            this.btnAddCountry.Text = "Добавить страну";
+            this.btnAddCountry.UseVisualStyleBackColor = true;
+            this.btnAddCountry.Click += new System.EventHandler(this.btnAddCountry_Click);
+            // 
             // countryDataGrid
             // 
             this.countryDataGrid.AllowUserToAddRows = false;
             this.countryDataGrid.AllowUserToDeleteRows = false;
+            this.countryDataGrid.AllowUserToOrderColumns = true;
             this.countryDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.countryDataGrid.Location = new System.Drawing.Point(9, 8);
+            this.countryDataGrid.Location = new System.Drawing.Point(3, 18);
             this.countryDataGrid.Name = "countryDataGrid";
             this.countryDataGrid.RowTemplate.Height = 25;
-            this.countryDataGrid.Size = new System.Drawing.Size(619, 384);
+            this.countryDataGrid.Size = new System.Drawing.Size(663, 384);
             this.countryDataGrid.TabIndex = 0;
             // 
             // CityTabs
@@ -88,6 +127,7 @@
             this.Controls.Add(this.mainTabControl);
             this.Name = "MainForm";
             this.Text = "Страны";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainTabControl.ResumeLayout(false);
             this.CountryTabs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.countryDataGrid)).EndInit();
@@ -101,5 +141,8 @@
         private TabPage CountryTabs;
         private TabPage CityTabs;
         private DataGridView countryDataGrid;
+        private Button btnUpdCountry;
+        private Button btnDeleteCountry;
+        private Button btnAddCountry;
     }
 }
