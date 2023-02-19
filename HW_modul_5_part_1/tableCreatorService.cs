@@ -38,7 +38,9 @@ namespace AdoNetWinformsApp.Servises
             table.Clear();
             table.Columns.Add("Id");
             table.Columns.Add("Название");
-          
+            table.Columns.Add("Колличество человек");
+            table.Columns.Add("Город является столицей");
+
 
             foreach (var city in cities)
             {

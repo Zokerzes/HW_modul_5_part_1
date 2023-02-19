@@ -1,5 +1,6 @@
 ﻿using AdoNetWinformsApp.Entities;
 using AdoNetWinformsApp.Entities.Constants;
+using HW_modul_5_part_1.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,14 +27,14 @@ namespace AdoNetWinformsApp
 
         public async Task<List<Country>> GetCountries()
         {
-            var countries = await _context.Countries.ToListAsync();
-            return countries;
+            return  await _context.Countries.ToListAsync();
+            
         }
 
-        public async Task<List<Country>> GetCities()
+        public async Task<List<City>> GetCities()
         {
-            var countries = await _context.Countries.ToListAsync();
-            return countries;
+              
+            return await _context.Cities.ToListAsync();
         }
 
     }
