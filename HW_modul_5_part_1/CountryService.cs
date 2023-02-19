@@ -36,6 +36,5 @@ namespace AdoNetWinformsApp
               
             return await _context.Cities.ToListAsync();
         }
-
     }
 }
