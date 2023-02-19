@@ -100,10 +100,15 @@
             // 
             this.countryDataGrid.AllowUserToAddRows = false;
             this.countryDataGrid.AllowUserToDeleteRows = false;
-            this.countryDataGrid.AllowUserToOrderColumns = true;
+            this.countryDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.countryDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.countryDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.countryDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.countryDataGrid.Location = new System.Drawing.Point(3, 18);
             this.countryDataGrid.Name = "countryDataGrid";
+            this.countryDataGrid.RowHeadersVisible = false;
             this.countryDataGrid.RowTemplate.Height = 25;
             this.countryDataGrid.Size = new System.Drawing.Size(663, 384);
             this.countryDataGrid.TabIndex = 0;
