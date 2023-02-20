@@ -49,13 +49,51 @@ namespace HW_modul_5_part_1
             if (form.ShowDialog() == DialogResult.OK)
             {
                 await _countryService.AddCountry(form.CountryName,form.CountryArea, (PartOfWorld)form.CountryPartOfWorld);
-
+                LoadCountries();
             }
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadCities();
+        }
+
+        private async void btnUpdCountry_Click(object sender, EventArgs e)
+        {
+            if (countryDataGrid.SelectedRows.Count > 0)
+            {
+                var countryId = int.Parse(countryDataGrid.SelectedRows[0].Cells[0].Value.ToString()!);
+                var country = await _countryService.GetCountryById(countryId);
+                if (country == null)
+                {
+                    MessageBox.Show("Страна не найденa");
+                    LoadCountries();
+                    return;
+                }
+
+                try
+                {
+                    var pairs = await _countryService.GetCountriesPairs();
+                    
+                    var form = new AddOrEditCountryForm(pairs, country.Name, country.Area, (int)country.PartOfWorld);
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        await _countryService.EditCountry(country, form.CountryName, form.CountryArea, form.CountryPartOfWorld);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    LoadCountries();
+                }
+            }
+            else
+            {
+                MessageBox.Show("выберите страну для изменения");
+            }
         }
     }
 }

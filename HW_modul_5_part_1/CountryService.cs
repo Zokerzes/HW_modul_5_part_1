@@ -52,5 +52,18 @@ namespace AdoNetWinformsApp
             await _context.Countries.AddAsync(country);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<Country?> GetCountryById(int id)
+        {
+            return await _context.Countries.FindAsync(id);
+        }
+
+        public async Task EditCountry(Country country, string newCountryName, decimal newCountryArea, int newCountryPartOfWorld)
+        {
+            country.Name = newCountryName;
+            country.Area = newCountryArea;
+            country.PartOfWorld = (PartOfWorld)newCountryPartOfWorld;
+            await _context.SaveChangesAsync();
+        }
     }
 }

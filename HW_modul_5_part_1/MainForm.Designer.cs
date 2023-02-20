@@ -80,6 +80,7 @@
             this.btnUpdCountry.TabIndex = 9;
             this.btnUpdCountry.Text = "Изменить  страну";
             this.btnUpdCountry.UseVisualStyleBackColor = true;
+            this.btnUpdCountry.Click += new System.EventHandler(this.btnUpdCountry_Click);
             // 
             // btnDeleteCountry
             // 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,7 +37,13 @@
             this.numericArea = new System.Windows.Forms.NumericUpDown();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.nameError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.areaError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.partOfWorldError = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nameError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areaError)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partOfWorldError)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -72,6 +79,7 @@
             this.txtCountryName.Name = "txtCountryName";
             this.txtCountryName.Size = new System.Drawing.Size(180, 23);
             this.txtCountryName.TabIndex = 3;
+            this.txtCountryName.Validating += new System.ComponentModel.CancelEventHandler(this.txtCountryName_Validating);
             // 
             // partOfWorldComboBox
             // 
@@ -81,6 +89,7 @@
             this.partOfWorldComboBox.Name = "partOfWorldComboBox";
             this.partOfWorldComboBox.Size = new System.Drawing.Size(180, 23);
             this.partOfWorldComboBox.TabIndex = 5;
+            this.partOfWorldComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.partOfWorldComboBox_Validating);
             // 
             // numericArea
             // 
@@ -93,6 +102,7 @@
             this.numericArea.Name = "numericArea";
             this.numericArea.Size = new System.Drawing.Size(180, 23);
             this.numericArea.TabIndex = 6;
+            this.numericArea.Validating += new System.ComponentModel.CancelEventHandler(this.numericArea_Validating);
             // 
             // btnOk
             // 
@@ -114,6 +124,21 @@
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // nameError
+            // 
+            this.nameError.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.nameError.ContainerControl = this;
+            // 
+            // areaError
+            // 
+            this.areaError.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.areaError.ContainerControl = this;
+            // 
+            // partOfWorldError
+            // 
+            this.partOfWorldError.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.partOfWorldError.ContainerControl = this;
+            // 
             // AddOrEditCountryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -130,6 +155,9 @@
             this.Name = "AddOrEditCountryForm";
             this.Text = "AddOrEditCountryForm";
             ((System.ComponentModel.ISupportInitialize)(this.numericArea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nameError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.areaError)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partOfWorldError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,5 +173,8 @@
         private NumericUpDown numericArea;
         private Button btnOk;
         private Button btnCancel;
+        private ErrorProvider nameError;
+        private ErrorProvider areaError;
+        private ErrorProvider partOfWorldError;
     }
 }
