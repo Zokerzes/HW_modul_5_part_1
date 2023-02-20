@@ -26,7 +26,7 @@ namespace AdoNetWinformsApp.Servises
                 row[0] = country.Id;
                 row[1] = country.Name;
                 row[2] = country.Area;
-                row[3] = country.PartOfWord;
+                row[3] = country.PartOfWorld;
                 table.Rows.Add(row);
             }
 

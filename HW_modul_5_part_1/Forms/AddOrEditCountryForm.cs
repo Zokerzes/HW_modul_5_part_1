@@ -1,4 +1,5 @@
 ﻿using AdoNetWinformsApp.Entities.Constants;
+using HW_modul_5_part_1.Servises;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,23 +20,38 @@ namespace HW_modul_5_part_1.Forms
         public AddOrEditCountryForm(List<KeyValuePair<string, int>> countries)
         {
             InitializeComponent();
-            PartOfWord(countries);
+            PartOfWorld();
         }
 
-        public AddOrEditCountryForm(List<KeyValuePair<string, int>> countries, string name, decimal area, int country)
+        public AddOrEditCountryForm(List<KeyValuePair<string, int>> countries, string name, decimal area, int countryId)
         {
-            //InitializeComponent();
-            //this.Text = "Изменить товар";
+            InitializeComponent();
+            this.Text = "Изменить товар";
 
-
-            //textName.Text = name;
-            //numericCost.Value = cost;
-            //PopulateComboBox(goodTypes, goodTypeId);
+            txtCountryName.Text = name;
+            numericArea.Value = area;
+            PartOfWorld();
         }
 
-        private void PartOfWord(List<KeyValuePair<string, int>> countries)
+        private void PartOfWorld()
         {
-            throw new NotImplementedException();
+            var pairs = new List<KeyValuePair<string, int>>();
+            pairs.Add(new("Не выбрана", 0));
+            var enumValues = Enum.GetValues<PartOfWorld>();
+            pairs.AddRange(enumValues.Select(x => new KeyValuePair<string, int>(x.GetEnumDescription(), (int)x)));
+
+            partOfWorldComboBox.DisplayMember = "Key";
+            partOfWorldComboBox.ValueMember = "Value";
+            partOfWorldComboBox.DataSource = pairs;
+
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (ValidateChildren())
+            {
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }

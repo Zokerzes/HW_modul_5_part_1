@@ -13,7 +13,7 @@ namespace AdoNetWinformsApp.Entities
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public decimal Area { get; set; }
-        public PartOfWord PartOfWord { get; set; }
+        public PartOfWorld PartOfWorld { get; set; }
         public virtual ICollection<City> Cities { get; set; }
     }
 }

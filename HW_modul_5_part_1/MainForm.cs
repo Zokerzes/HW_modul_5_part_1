@@ -1,5 +1,8 @@
 using AdoNetWinformsApp;
+using AdoNetWinformsApp.Entities;
+using AdoNetWinformsApp.Entities.Constants;
 using AdoNetWinformsApp.Servises;
+using HW_modul_5_part_1.Forms;
 
 namespace HW_modul_5_part_1
 {
@@ -38,9 +41,16 @@ namespace HW_modul_5_part_1
             LoadTabMethods[0]();
         }
 
-        private void btnAddCountry_Click(object sender, EventArgs e)
+        private async void btnAddCountry_Click(object sender, EventArgs e)
         {
+            var pairs = await _countryService.GetCountriesPairs();
+            
+            var form = new AddOrEditCountryForm(pairs);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                await _countryService.AddCountry(form.CountryName,form.CountryArea, (PartOfWorld)form.CountryPartOfWorld);
 
+            }
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)

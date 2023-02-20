@@ -36,5 +36,21 @@ namespace AdoNetWinformsApp
               
             return await _context.Cities.ToListAsync();
         }
+
+        public async Task<List<KeyValuePair<string, int>>> GetCountriesPairs()
+        {
+            return await _context.Countries
+               .Select(x => new KeyValuePair<string, int>(x.Name, x.Id))
+               .ToListAsync();
+        }
+
+
+        
+        public async Task AddCountry(string name, decimal area, PartOfWorld countryPartOfWorldId)
+        {
+            var country = new Country { Name = name, Area = area, PartOfWorld = countryPartOfWorldId };
+            await _context.Countries.AddAsync(country);
+            await _context.SaveChangesAsync();
+        }
     }
 }

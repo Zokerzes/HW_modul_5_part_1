@@ -34,6 +34,8 @@
             this.txtCountryName = new System.Windows.Forms.TextBox();
             this.partOfWorldComboBox = new System.Windows.Forms.ComboBox();
             this.numericArea = new System.Windows.Forms.NumericUpDown();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericArea)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,11 +94,33 @@
             this.numericArea.Size = new System.Drawing.Size(180, 23);
             this.numericArea.TabIndex = 6;
             // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(162, 116);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 7;
+            this.btnOk.Text = "OK";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(267, 116);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Отмена";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // AddOrEditCountryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(354, 267);
+            this.ClientSize = new System.Drawing.Size(387, 150);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.numericArea);
             this.Controls.Add(this.partOfWorldComboBox);
             this.Controls.Add(this.txtCountryName);
@@ -119,5 +143,7 @@
         private TextBox txtCountryName;
         private ComboBox partOfWorldComboBox;
         private NumericUpDown numericArea;
+        private Button btnOk;
+        private Button btnCancel;
     }
 }
