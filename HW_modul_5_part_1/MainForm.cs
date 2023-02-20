@@ -31,6 +31,7 @@ namespace HW_modul_5_part_1
             TableCreatorService.ShowTable(
             сitiesDataGrid,
             TableCreatorService.CreateCityTable(await _countryService.GetCities()));
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)  // ќб€ательно при запуске  дл€ старта загрузки данных из базы
