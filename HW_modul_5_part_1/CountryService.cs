@@ -27,13 +27,13 @@ namespace AdoNetWinformsApp
 
         public async Task<List<Country>> GetCountries()
         {
-            return  await _context.Countries.ToListAsync();
-            
+            return await _context.Countries.ToListAsync();
+
         }
 
         public async Task<List<City>> GetCities()
         {
-              
+
             return await _context.Cities.ToListAsync();
         }
 
@@ -45,7 +45,7 @@ namespace AdoNetWinformsApp
         }
 
 
-        
+
         public async Task AddCountry(string name, decimal area, PartOfWorld countryPartOfWorldId)
         {
             var country = new Country { Name = name, Area = area, PartOfWorld = countryPartOfWorldId };
@@ -64,6 +64,28 @@ namespace AdoNetWinformsApp
             country.Area = newCountryArea;
             country.PartOfWorld = (PartOfWorld)newCountryPartOfWorld;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task DeletedGood(int id)
+        {
+            var country = await _context.Countries.FindAsync(id);
+            if (country != null)
+            {
+                _context.Countries.Remove(country);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Такой страны не существует");
+            }
+        }
+
+
+        public async Task<List<KeyValuePair<string, int>>> GetCitiesPairs()
+        {
+            return await _context.Cities
+               .Select(x => new KeyValuePair<string, int>(x.Name, x.Id))
+               .ToListAsync();
         }
     }
 }

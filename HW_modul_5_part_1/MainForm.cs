@@ -22,6 +22,12 @@ namespace HW_modul_5_part_1
             };
 
         }
+
+        private void MainTabs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadTabMethods[mainTabControl.SelectedIndex]();
+
+        }
         private async void LoadCountries()
         {
             TableCreatorService.ShowTable(
@@ -94,6 +100,42 @@ namespace HW_modul_5_part_1
             else
             {
                 MessageBox.Show("выберите страну для изменения");
+            }
+        }
+
+        private async void btnDeleteCountry_Click(object sender, EventArgs e)
+        {
+            if (countryDataGrid.SelectedRows.Count > 0)
+            {
+                var countryId = int.Parse(countryDataGrid.SelectedRows[0].Cells[0].Value.ToString()!);
+                try
+                {
+                    await _countryService.DeletedGood(countryId);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    LoadCountries();
+                }
+            }
+            else
+            {
+                MessageBox.Show("выберите товар для удаления");
+            }
+        }
+
+        private async void btnAddCity_Click(object sender, EventArgs e)
+        {
+            var pairs = await _countryService.GetCitiesPairs();
+            // вернутся после сборки формы
+            var form = new AddOrEditCountryForm(pairs);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                await _countryService.AddCountry(form.CountryName, form.CountryArea, (PartOfWorld)form.CountryPartOfWorld);
+                LoadCountries();
             }
         }
     }

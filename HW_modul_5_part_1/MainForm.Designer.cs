@@ -92,6 +92,7 @@
             this.btnDeleteCountry.TabStop = false;
             this.btnDeleteCountry.Text = "Удалить страну";
             this.btnDeleteCountry.UseVisualStyleBackColor = true;
+            this.btnDeleteCountry.Click += new System.EventHandler(this.btnDeleteCountry_Click);
             // 
             // btnAddCountry
             // 
@@ -166,6 +167,7 @@
             this.btnAddCity.TabIndex = 11;
             this.btnAddCity.Text = "Добавить город";
             this.btnAddCity.UseVisualStyleBackColor = true;
+            this.btnAddCity.Click += new System.EventHandler(this.btnAddCity_Click);
             // 
             // сitiesDataGrid
             // 
