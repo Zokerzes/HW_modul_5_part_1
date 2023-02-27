@@ -2,6 +2,8 @@
 using AdoNetWinformsApp.Entities.Constants;
 using HW_modul_5_part_1.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using System.Globalization;
 
 namespace AdoNetWinformsApp
 {
@@ -112,6 +114,12 @@ namespace AdoNetWinformsApp
             await _context.SaveChangesAsync();
         }
 
-       
+        public async Task<List<Country>> GetCitiesByletterA()
+        {
+            //return await _context
+            //    .Cities
+            //    .Where(x=>x.IsCapital.AnyAsync(p => p.Name == "%а%"))
+            //    ;
+        }
     }
 }

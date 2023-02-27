@@ -191,11 +191,11 @@ namespace HW_modul_5_part_1
             TableCreatorService.CreateCountryTable( await _countryService.GetCountries((decimal)numeriCountryArea.Value)));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-           // TableCreatorService.ShowTable(
-          //  ñitiesDataGrid,
-            //TableCreatorService.CreateCityTable(await _countryService.GetCitiesByletterA(string)));
+        //    TableCreatorService.ShowTable(
+        //    ñitiesDataGrid,
+        //    TableCreatorService.CreateCityTable(await _countryService.GetCitiesByletterA()));
         }
     }
 }
