@@ -2,11 +2,6 @@
 using AdoNetWinformsApp.Entities.Constants;
 using HW_modul_5_part_1.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdoNetWinformsApp
 {
@@ -20,21 +15,28 @@ namespace AdoNetWinformsApp
             _context = new CountryContext();
         }
 
-        public CountryService(CountryContext context)
-        {
-            _context = new CountryContext();
-        }
-
         public async Task<List<Country>> GetCountries()
         {
             return await _context.Countries.ToListAsync();
-
         }
 
-        public async Task<List<City>> GetCities()
+        public async Task<List<City>> GetCities(int countryId = 0)
         {
-
+            if (countryId != 0)
+            {
+                return await _context.Cities.Where(x => x.CountryId == countryId).ToListAsync();
+            }
             return await _context.Cities.ToListAsync();
+        }
+
+        public async Task<List<City>> GetCapitalPopulationMore5M()
+        {
+            
+            return await _context.Cities
+                .Where(x => x.IsCapital == true)
+                .Where(x => x.Population >= 5000000)
+                .ToListAsync();
+           
         }
 
         public async Task<List<KeyValuePair<string, int>>> GetCountriesPairs()
@@ -87,5 +89,14 @@ namespace AdoNetWinformsApp
                .Select(x => new KeyValuePair<string, int>(x.Name, x.Id))
                .ToListAsync();
         }
+
+        public async Task AddCity(string cityName, int cityPopulation, bool isCapital, int countryOfWorld)
+        {
+            var city = new City { Name = cityName, Population = cityPopulation, IsCapital = isCapital, CountryId = countryOfWorld };
+            await _context.Cities.AddAsync(city);
+            await _context.SaveChangesAsync();
+        }
+
+       
     }
 }

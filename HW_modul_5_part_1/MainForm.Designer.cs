@@ -35,10 +35,13 @@
             this.btnAddCountry = new System.Windows.Forms.Button();
             this.countryDataGrid = new System.Windows.Forms.DataGridView();
             this.CityTabs = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxCountrySelected = new System.Windows.Forms.ComboBox();
             this.btnUpdCity = new System.Windows.Forms.Button();
             this.btnDeleteCity = new System.Windows.Forms.Button();
             this.btnAddCity = new System.Windows.Forms.Button();
             this.сitiesDataGrid = new System.Windows.Forms.DataGridView();
+            this.btnCapitalMore = new System.Windows.Forms.Button();
             this.mainTabControl.SuspendLayout();
             this.CountryTabs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.countryDataGrid)).BeginInit();
@@ -125,6 +128,9 @@
             // 
             // CityTabs
             // 
+            this.CityTabs.Controls.Add(this.btnCapitalMore);
+            this.CityTabs.Controls.Add(this.label1);
+            this.CityTabs.Controls.Add(this.comboBoxCountrySelected);
             this.CityTabs.Controls.Add(this.btnUpdCity);
             this.CityTabs.Controls.Add(this.btnDeleteCity);
             this.CityTabs.Controls.Add(this.btnAddCity);
@@ -136,6 +142,25 @@
             this.CityTabs.TabIndex = 1;
             this.CityTabs.Text = "Города";
             this.CityTabs.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 15);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Показать по стране";
+            // 
+            // comboBoxCountrySelected
+            // 
+            this.comboBoxCountrySelected.AllowDrop = true;
+            this.comboBoxCountrySelected.FormattingEnabled = true;
+            this.comboBoxCountrySelected.Location = new System.Drawing.Point(126, 9);
+            this.comboBoxCountrySelected.Name = "comboBoxCountrySelected";
+            this.comboBoxCountrySelected.Size = new System.Drawing.Size(199, 23);
+            this.comboBoxCountrySelected.TabIndex = 14;
+            this.comboBoxCountrySelected.SelectedIndexChanged += new System.EventHandler(this.comboBoxCountrySelected_SelectedIndexChanged);
             // 
             // btnUpdCity
             // 
@@ -179,13 +204,25 @@
             this.сitiesDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.сitiesDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.сitiesDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.сitiesDataGrid.Location = new System.Drawing.Point(4, 7);
+            this.сitiesDataGrid.Location = new System.Drawing.Point(4, 38);
             this.сitiesDataGrid.Name = "сitiesDataGrid";
             this.сitiesDataGrid.RowHeadersVisible = false;
             this.сitiesDataGrid.RowTemplate.Height = 25;
             this.сitiesDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.сitiesDataGrid.Size = new System.Drawing.Size(661, 384);
+            this.сitiesDataGrid.Size = new System.Drawing.Size(626, 353);
             this.сitiesDataGrid.TabIndex = 10;
+            // 
+            // btnCapitalMore
+            // 
+            this.btnCapitalMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCapitalMore.Location = new System.Drawing.Point(636, 184);
+            this.btnCapitalMore.Name = "btnCapitalMore";
+            this.btnCapitalMore.Size = new System.Drawing.Size(125, 58);
+            this.btnCapitalMore.TabIndex = 16;
+            this.btnCapitalMore.TabStop = false;
+            this.btnCapitalMore.Text = "Столицы с населением болие 5М";
+            this.btnCapitalMore.UseVisualStyleBackColor = true;
+            this.btnCapitalMore.Click += new System.EventHandler(this.btnCapitalMore_Click);
             // 
             // MainForm
             // 
@@ -201,6 +238,7 @@
             this.CountryTabs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.countryDataGrid)).EndInit();
             this.CityTabs.ResumeLayout(false);
+            this.CityTabs.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.сitiesDataGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -219,5 +257,8 @@
         private Button btnDeleteCity;
         private Button btnAddCity;
         private DataGridView сitiesDataGrid;
+        private Label label1;
+        private ComboBox comboBoxCountrySelected;
+        private Button btnCapitalMore;
     }
 }

@@ -18,16 +18,16 @@ namespace HW_modul_5_part_1.Forms
         public string CountryName => txtCountryName.Text.Trim();
         public decimal CountryArea => numericArea.Value;
         public int CountryPartOfWorld => (int)partOfWorldComboBox.SelectedValue;
-        public AddOrEditCountryForm(List<KeyValuePair<string, int>> countries)
+        public AddOrEditCountryForm()
         {
             InitializeComponent();
             PartOfWorld();
         }
 
-        public AddOrEditCountryForm(List<KeyValuePair<string, int>> countries, string name, decimal area, int countryId)
+        public AddOrEditCountryForm(string name, decimal area)
         {
             InitializeComponent();
-            this.Text = "Изменить страну";
+            Text = "Изменить страну";
 
             txtCountryName.Text = name;
             numericArea.Value = area;

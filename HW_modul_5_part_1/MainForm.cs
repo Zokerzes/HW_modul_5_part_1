@@ -3,6 +3,7 @@ using AdoNetWinformsApp.Entities;
 using AdoNetWinformsApp.Entities.Constants;
 using AdoNetWinformsApp.Servises;
 using HW_modul_5_part_1.Forms;
+using Microsoft.Identity.Client;
 
 namespace HW_modul_5_part_1
 {
@@ -15,7 +16,7 @@ namespace HW_modul_5_part_1
         {
             InitializeComponent();
             _countryService = new CountryService();
-            LoadTabMethods = new ()
+            LoadTabMethods = new()
             {
                 {0,() =>LoadCountries() },
                 {1,() =>LoadCities() }
@@ -23,11 +24,7 @@ namespace HW_modul_5_part_1
 
         }
 
-        private void MainTabs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadTabMethods[mainTabControl.SelectedIndex]();
-
-        }
+       
         private async void LoadCountries()
         {
             TableCreatorService.ShowTable(
@@ -40,8 +37,24 @@ namespace HW_modul_5_part_1
             TableCreatorService.ShowTable(
             сitiesDataGrid,
             TableCreatorService.CreateCityTable(await _countryService.GetCities()));
-
+            CountryCMB(await _countryService.GetCountriesPairs());
         }
+
+        private async void ReLoadCities(int countryId)
+        {
+            TableCreatorService.ShowTable(
+            сitiesDataGrid,
+            TableCreatorService.CreateCityTable(await _countryService.GetCities(countryId)));
+        }
+
+        private async void GetCapital()
+        {
+            TableCreatorService.ShowTable(
+            сitiesDataGrid,
+            TableCreatorService.CreateCityTable(await _countryService.GetCapitalPopulationMore5M()));
+        }
+
+
 
         private void MainForm_Load(object sender, EventArgs e)  // Обяательно при запуске  для старта загрузки данных из базы
         {
@@ -50,19 +63,17 @@ namespace HW_modul_5_part_1
 
         private async void btnAddCountry_Click(object sender, EventArgs e)
         {
-            var pairs = await _countryService.GetCountriesPairs();
-            
-            var form = new AddOrEditCountryForm(pairs);
+            var form = new AddOrEditCountryForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                await _countryService.AddCountry(form.CountryName,form.CountryArea, (PartOfWorld)form.CountryPartOfWorld);
+                await _countryService.AddCountry(form.CountryName, form.CountryArea, (PartOfWorld)form.CountryPartOfWorld);
                 LoadCountries();
             }
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadCities();
+            LoadTabMethods[mainTabControl.SelectedIndex]();
         }
 
         private async void btnUpdCountry_Click(object sender, EventArgs e)
@@ -80,9 +91,7 @@ namespace HW_modul_5_part_1
 
                 try
                 {
-                    var pairs = await _countryService.GetCountriesPairs();
-                    
-                    var form = new AddOrEditCountryForm(pairs, country.Name, country.Area, (int)country.PartOfWorld);
+                    var form = new AddOrEditCountryForm(country.Name, country.Area);
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         await _countryService.EditCountry(country, form.CountryName, form.CountryArea, form.CountryPartOfWorld);
@@ -129,14 +138,36 @@ namespace HW_modul_5_part_1
 
         private async void btnAddCity_Click(object sender, EventArgs e)
         {
-            var pairs = await _countryService.GetCitiesPairs();
+            var pairs = await _countryService.GetCountriesPairs();
             // вернутся после сборки формы
-            var form = new AddOrEditCountryForm(pairs);
+            var form = new AddOrEditCities(pairs);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                await _countryService.AddCountry(form.CountryName, form.CountryArea, (PartOfWorld)form.CountryPartOfWorld);
-                LoadCountries();
+                await _countryService.AddCity(form.CityName, form.CityPopulation, form.IsCapital, form.countryOfWorld);
+                LoadCities();
             }
+        }
+
+        private  void comboBoxCountrySelected_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReLoadCities((int)comboBoxCountrySelected.SelectedValue);
+        }
+
+        private void CountryCMB( List<KeyValuePair<string, int>> countryPairs)
+        {
+            var pairs = new List<KeyValuePair<string, int>>();
+            pairs.Add(new("Не выбрана", 0));
+
+            pairs.AddRange(countryPairs);
+
+            comboBoxCountrySelected.DisplayMember = "Key";
+            comboBoxCountrySelected.ValueMember = "Value";
+            comboBoxCountrySelected.DataSource = pairs;
+        }
+
+        private void btnCapitalMore_Click(object sender, EventArgs e)
+        {
+            GetCapital();
         }
     }
 }

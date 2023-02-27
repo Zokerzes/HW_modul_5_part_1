@@ -19,14 +19,16 @@ namespace AdoNetWinformsApp.Servises
             table.Columns.Add("Название страны");
             table.Columns.Add("Площадь");
             table.Columns.Add("Часть мира");
+            table.Columns.Add("Столица");
 
-            foreach (var country in countries )
+            foreach (var country in countries)
             {
                 DataRow row = table.NewRow();
                 row[0] = country.Id;
                 row[1] = country.Name;
                 row[2] = country.Area;
                 row[3] = country.PartOfWorld;
+                row[4] = country.Cities.FirstOrDefault(x => x.IsCapital)?.Name;
                 table.Rows.Add(row);
             }
 
@@ -39,7 +41,7 @@ namespace AdoNetWinformsApp.Servises
             table.Columns.Add("Id");
             table.Columns.Add("Название");
             table.Columns.Add("Колличество человек");
-            table.Columns.Add("Город является столицей");
+            table.Columns.Add("Страна");
 
 
             foreach (var city in cities)
@@ -48,7 +50,7 @@ namespace AdoNetWinformsApp.Servises
                 row[0] = city.Id;
                 row[1] = city.Name;
                 row[2] = city.Population;
-                row[3] = city.IsCapital;
+                row[3] = city.Country.Name;
 
                 table.Rows.Add(row);
             }
@@ -60,7 +62,6 @@ namespace AdoNetWinformsApp.Servises
             grid.DataSource = null;
             grid.DataSource = table;
             grid.Columns[0].Visible = false;   //прячем 1ю колонку
-
         }
 
     }
