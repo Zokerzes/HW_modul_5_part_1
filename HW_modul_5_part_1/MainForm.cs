@@ -169,5 +169,31 @@ namespace HW_modul_5_part_1
         {
             GetCapital();
         }
+
+        private void btnGetEuropianCountry_Click(object sender, EventArgs e)
+        {
+            LoadEuropianCountry();
+        }
+
+        private async void LoadEuropianCountry()
+        {
+          
+            TableCreatorService.ShowTable(
+            countryDataGrid,
+            TableCreatorService.CreateCountryTable(await _countryService.GetEuroCountries()));
+            
+        }
+
+        private async void btnCountryAreaMore_Click(object sender, EventArgs e)
+        {
+            TableCreatorService.ShowTable(
+            countryDataGrid,
+            TableCreatorService.CreateCountryTable( await _countryService.GetCountries((decimal)numeriCountryArea.Value)));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

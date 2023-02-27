@@ -20,6 +20,21 @@ namespace AdoNetWinformsApp
             return await _context.Countries.ToListAsync();
         }
 
+        public async Task<List<Country>> GetCountries(decimal area)
+        {
+            return await _context
+                .Countries
+                .Where(x=>x.Area >= area)
+                .ToListAsync();
+        }
+        public async Task<List<Country>> GetEuroCountries()
+        {
+            return await _context
+                .Countries
+                .Where(x=>x.PartOfWorld == PartOfWorld.Europe)
+                .ToListAsync();
+        }
+
         public async Task<List<City>> GetCities(int countryId = 0)
         {
             if (countryId != 0)
