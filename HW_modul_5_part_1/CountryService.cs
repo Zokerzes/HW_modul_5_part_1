@@ -114,12 +114,12 @@ namespace AdoNetWinformsApp
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Country>> GetCitiesByletterA()
+        public async Task<List<City>> GetCitiesByletterA()
         {
-            //return await _context
-            //    .Cities
-            //    .Where(x=>x.IsCapital.AnyAsync(p => p.Name == "%а%"))
-            //    ;
+            return await _context
+                .Cities
+                .Where(x => EF.Functions.Like(x.Name!, "%а%"))
+                .ToListAsync();
         }
     }
 }

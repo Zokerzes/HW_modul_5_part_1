@@ -193,9 +193,9 @@ namespace HW_modul_5_part_1
 
         private async void button1_Click(object sender, EventArgs e)
         {
-        //    TableCreatorService.ShowTable(
-        //    ñitiesDataGrid,
-        //    TableCreatorService.CreateCityTable(await _countryService.GetCitiesByletterA()));
+            TableCreatorService.ShowTable(
+            ñitiesDataGrid,
+            TableCreatorService.CreateCityTable(await _countryService.GetCitiesByletterA()));
         }
     }
 }
